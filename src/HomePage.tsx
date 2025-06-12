@@ -1,3 +1,5 @@
+import { db } from './firebase';
+import { ref, push, onValue } from 'firebase/database';
 import React, { useState, useEffect } from 'react';
 import { 
   MapPin, 
@@ -54,11 +56,16 @@ export default function HomePage() {
 
   // Carousel auto-slide effect
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % galleryImages.length);
-    }, 4000);
-    return () => clearInterval(interval);
+  const reviewsRef = ref(db, 'reviews');
+  onValue(reviewsRef, (snapshot) => {
+    const data = snapshot.val();
+    if (data) {
+      const all = Object.values(data);
+      setReviews(all.reverse());  // newest first
+    }
+  });
   }, []);
+
 
   const goToSlide = (index) => {
     setCurrentSlide(index);
@@ -73,12 +80,23 @@ export default function HomePage() {
   };
 
   const handleSubmit = () => {
-    if (newReview.name && newReview.rating && newReview.comment) {
-      const review = { ...newReview, rating: parseInt(newReview.rating) };
-      setReviews(prev => [review, ...prev].slice(0, 6));
-      setNewReview({ name: '', rating: '', comment: '' });
+   if (newReview.name && newReview.rating && newReview.comment) {
+     const review = { 
+       ...newReview, 
+       rating: parseInt(newReview.rating) 
+     };
+    
+     push(ref(db, 'reviews'), review);
+    
+     setNewReview({ 
+       name: '', 
+       rating: '', 
+       comment: '' 
+     });
     }
   };
+
+
 
   const renderStars = (rating) => {
     return Array.from({ length: 5 }, (_, i) => (
