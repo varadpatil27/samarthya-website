@@ -18,6 +18,8 @@ import {
 } from 'lucide-react';
 
 const galleryImages = [
+  { src: '/gallery/gallery1.jpg', caption: '' },
+  { src: '/gallery/gallery2.jpg', caption: '' },
   { src: '/gallery/gallery3.png', caption: '' },
   { src: '/gallery/gallery4.png', caption: '' },
 ];
