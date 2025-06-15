@@ -18,10 +18,10 @@ import {
 } from 'lucide-react';
 
 const galleryImages = [
-  { src: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400', caption: 'Performance at Gudi Padwa' },
-  { src: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400', caption: 'Practice session' },
-  { src: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=400', caption: 'Cultural event participation' },
-  { src: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400', caption: 'Dombivli rally' },
+  { src: '/gallery/gallery1.jpg', caption: '' },
+  { src: '/gallery/gallery2.jpg', caption: '' },
+  { src: '/gallery/gallery3.png', caption: '' },
+  { src: '/gallery/gallery4.png', caption: '' },
 ];
 
 const faqData = [
